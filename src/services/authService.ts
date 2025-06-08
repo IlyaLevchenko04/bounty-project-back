@@ -39,3 +39,9 @@ export const generateToken = (user: IUserDocument): string => {
     expiresIn: "7d",
   });
 };
+
+export const getUserById = async (
+  userId: Types.ObjectId
+): Promise<IUserDocument | null> => {
+  return User.findById(userId).select("-password");
+};
