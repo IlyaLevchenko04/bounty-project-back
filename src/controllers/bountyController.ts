@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response, RequestHandler } from "express";
 import * as bountyService from "../services/bountyService";
 import { AuthRequest } from "../middlewares/authMiddleware";
 import { Types } from "mongoose";
@@ -49,6 +49,20 @@ export const myBounties = async (req: AuthRequest, res: Response) => {
     const userId = new Types.ObjectId(req.user?.id);
     const bounties = await bountyService.getBountiesByUser(userId);
     res.json(bounties);
+  } catch (err: any) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
+export const getBountyById: RequestHandler = async (req, res) => {
+  try {
+    const bountyId = new Types.ObjectId(req.params.id);
+    const bounty = await bountyService.getBountyById(bountyId);
+    if (!bounty) {
+      res.status(404).json({ error: "Bounty not found" });
+      return;
+    }
+    res.json(bounty);
   } catch (err: any) {
     res.status(400).json({ error: err.message });
   }

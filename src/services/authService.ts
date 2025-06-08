@@ -11,7 +11,7 @@ export const registerUser = async (
   const existing = await User.findOne({ username });
   if (existing) throw new Error("Username already exists");
   const hashed = await bcrypt.hash(password, 10);
-  const user = new User({ username, password: hashed });
+  const user = new User({ username, password: hashed, role: "hunter" });
   await user.save();
   return user;
 };
