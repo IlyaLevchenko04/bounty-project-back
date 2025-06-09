@@ -1,6 +1,6 @@
 import { Response } from "express";
-import { AuthRequest } from "@middlewares/authMiddleware";
-import * as adminService from "@services/adminService";
+import { AuthRequest } from "../middlewares/authMiddleware";
+import * as adminService from "../services/adminService";
 import { Types } from "mongoose";
 
 export const getAllUsers = async (

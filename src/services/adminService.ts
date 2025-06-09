@@ -1,5 +1,5 @@
-import User, { IUserDocument } from "@models/User";
-import Bounty from "@models/Bounty";
+import User, { IUserDocument } from "../models/User";
+import Bounty from "../models/Bounty";
 import { Types } from "mongoose";
 
 interface BountyDetails {
